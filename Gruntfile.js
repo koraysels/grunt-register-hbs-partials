@@ -8,67 +8,67 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>',
-      ],
-      options: {
-        jshintrc: '.jshintrc',
-      },
-    },
-
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp'],
-    },
-
-    // Configuration to be run (and then tested).
-    register_partials: {
-      default_options: {
-        options: {
-            extension: '.hbs'
+    // Project configuration.
+    grunt.initConfig({
+        jshint: {
+            all: [
+                'Gruntfile.js',
+                'tasks/*.js',
+                '<%= nodeunit.tests %>',
+            ],
+            options: {
+                jshintrc: '.jshintrc',
+            },
         },
-        files: {
-          'tmp/partials_default.js': ['test/fixtures/navbar.hbs', 'test/fixtures/footer.hbs'],
+
+        // Before generating any new files, remove any previously-created files.
+        clean: {
+            tests: ['tmp'],
         },
-      },
-      custom_options: {
-        options: {
-            extension: '.hbs',
-            rootPartialsDir: 'test/'
+
+        // Configuration to be run (and then tested).
+        register_partials: {
+            default_options: {
+                options: {
+                    extension: '.hbs'
+                },
+                files: {
+                    'tmp/partials_default.js': [ 'test/fixtures/footer.hbs', 'test/fixtures/navbar.hbs']
+                },
+            },
+            custom_options: {
+                options: {
+                    extension: '.hbs',
+                    rootPartialsDir: 'test/'
+                },
+                files: [
+                    {  src: ['**/*.hbs'], dest: 'tmp/partials_custom.js' }
+                ]
+            },
         },
-        files: {
-          'tmp/partials_custom.js': ['test/fixtures/navbar.hbs', 'test/fixtures/footer.hbs'],
+
+        // Unit tests.
+        nodeunit: {
+            tests: ['test/*_test.js'],
         },
-      },
-    },
 
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js'],
-    },
+    });
 
-  });
+    // Actually load this plugin's task(s).
+    grunt.loadTasks('tasks');
 
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
+    // These plugins provide necessary tasks.
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+    // Whenever the "test" task is run, first clean the "tmp" dir, then run this
+    // plugin's task(s), then test the result.
+    grunt.registerTask('test', ['clean', 'register_partials', 'nodeunit']);
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'register_partials', 'nodeunit']);
-
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+    // By default, lint and run all tests.
+    grunt.registerTask('default', ['jshint', 'test']);
 
 };

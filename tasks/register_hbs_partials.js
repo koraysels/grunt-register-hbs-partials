@@ -23,8 +23,10 @@ module.exports = function (grunt) {
                 var contents = "module.exports = function (Handlebars) {" +
                     "\n    function setup() {";
                 contents += file.src.filter(function (filepath) {
+
+
                     // Remove nonexistent files (it's up to you to filter or warn here).
-                    if (!grunt.file.exists(filepath)) {
+                    if (!grunt.file.exists(filepath) && !grunt.file.isDir(filepath)) {
                         grunt.log.warn('Source file "' + filepath + '" not found.');
                         return false;
                     } else {
@@ -60,7 +62,10 @@ module.exports = function (grunt) {
 
                 grunt.file.write(file.dest, contents);
                 grunt.log.writeln('File "' + file.dest + '" created.');
+
             });
         }
-    );
-};
+    )
+    ;
+}
+;
