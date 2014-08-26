@@ -41,7 +41,8 @@ module.exports = function (grunt) {
             custom_options: {
                 options: {
                     extension: '.hbs',
-                    rootPartialsDir: 'test/'
+                    rootPartialsDir: 'test/fixtures',
+                    requireRoot : 'test/'
                 },
                 files: [
                     {  src: ['**/*.hbs'], dest: 'tmp/partials_custom.js' }

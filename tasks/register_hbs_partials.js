@@ -14,7 +14,8 @@ module.exports = function (grunt) {
             // Merge task-specific and/or target-specific options with these defaults.
             var options = this.options({
                 extension: '.hbs',
-                rootPartialsDir: "undefined"
+                rootPartialsDir: "undefined",
+                requireRoot: "undefined"
             });
 
 //            Iterate over all specified file groups.
@@ -42,9 +43,16 @@ module.exports = function (grunt) {
                     if (partialDir === "undefined") {
                         partialDir = path.dirname(filepath);
                     } else {
-                        partialDir = path.dirname(path.relative("test/", filepath));
+                        partialDir = path.dirname(path.relative(options.rootPartialsDir, filepath));
                     }
                     partialDir = partialDir === '.' ? '' : partialDir + '/';
+
+
+                    if (options.requireRoot !== "undefined") {
+                        filepath = path.relative(options.requireRoot, filepath);
+                    }
+
+
 
                     var partialName = partialDir + path.basename(filepath, options.extension);
 

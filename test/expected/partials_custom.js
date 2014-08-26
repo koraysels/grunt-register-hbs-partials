@@ -1,7 +1,7 @@
 module.exports = function (Handlebars) {
     function setup() {
-        Handlebars.registerPartial("fixtures/footer", require("./test/fixtures/footer.hbs"));
-        Handlebars.registerPartial("fixtures/navbar", require("./test/fixtures/navbar.hbs"));
+        Handlebars.registerPartial("footer", require("./fixtures/footer.hbs"));
+        Handlebars.registerPartial("navbar", require("./fixtures/navbar.hbs"));
     }
 
     return {

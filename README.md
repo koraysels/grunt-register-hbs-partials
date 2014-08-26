@@ -37,6 +37,22 @@ grunt.initConfig({
 });
 ```
 
+## it will generate somehting like this
+
+```
+    module.exports = function (Handlebars) {
+        function setup() {
+            Handlebars.registerPartial("test/partials/footer", require("./test/partials/footer.hbs"));
+            Handlebars.registerPartial("test/partials/navbar", require("./test/partials/navbar.hbs"));
+        }
+    
+        return {
+            setup: setup
+        };
+    };
+```
+so you can use ``` {{> test/partials/footer }} ``` in your templates
+
 ### Options
 
 #### options.separator
