@@ -7,7 +7,6 @@
  */
 'use strict';
 var fs = require('fs');
-var readdirp = require('readdirp');
 var path = require('path');
 module.exports = function (grunt) {
 
