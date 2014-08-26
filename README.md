@@ -107,5 +107,8 @@ grunt.initConfig({
 });
 ```
 
+
+you can also set the `` requireRoot `` proerty to force the outputted require statement to start at another directory
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
