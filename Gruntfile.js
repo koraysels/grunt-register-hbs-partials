@@ -29,21 +29,22 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    register_hbs_partials: {
+    register_partials: {
       default_options: {
         options: {
+            extension: '.hbs'
         },
         files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/partials_default.js': ['test/fixtures/navbar.hbs', 'test/fixtures/footer.hbs'],
         },
       },
       custom_options: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!',
+            extension: '.hbs',
+            rootPartialsDir: './koray/'
         },
         files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/partials_custom.js': ['test/fixtures/navbar.hbs', 'test/fixtures/footer.hbs'],
         },
       },
     },
@@ -65,7 +66,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'register_hbs_partials', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'register_partials', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

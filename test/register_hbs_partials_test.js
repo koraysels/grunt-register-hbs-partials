@@ -30,18 +30,18 @@ exports.register_hbs_partials = {
   default_options: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    var actual = grunt.file.read('tmp/partials_default.js');
+    var expected = grunt.file.read('test/expected/partials_default.js');
+    test.equal(actual, expected, 'the default behaviour adding all partials to a js file');
 
     test.done();
   },
   custom_options: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+    var actual = grunt.file.read('tmp/partials_custom.js');
+    var expected = grunt.file.read('test/expected/partials_custom.js');
+    test.equal(actual, expected, 'the custom behaviour adding all partials to a js file with a specified partials location');
 
     test.done();
   },

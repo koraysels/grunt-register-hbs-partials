@@ -17,7 +17,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-register-hbs-partials');
 ```
 
-## The "register_hbs_partials" task
+## The "register_partials" task
 
 ### Overview
 In your project's Gruntfile, add a section named `register_hbs_partials` to the data object passed into `grunt.initConfig()`.
