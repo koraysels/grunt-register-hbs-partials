@@ -9,41 +9,6 @@
 var fs = require('fs');
 var readdirp = require('readdirp');
 var path = require('path');
-
-var readNext = function (count, self) {
-    readdirp({root: self.partialsDir[count], fileFilter: '*.*'})
-        .on('warn', function (err) {
-            console.warn('Non-fatal error trying to cache partials.', err);
-        })
-        .on('error', function (err) {
-            console.error('Fatal error trying to cache partials', err);
-            return;
-        })
-        .on('data', function (entry) {
-            if (!entry) {
-                return;
-            }
-            var source = fs.readFileSync(entry.fullPath, 'utf8');
-            var dirname = path.dirname(entry.path);
-            dirname = dirname === '.' ? '' : dirname + '/';
-
-            var name = dirname + path.basename(entry.name, path.extname(entry.name));
-
-
-//            Handlebars.registerPartial(name, source);
-        })
-        .on('end', function () {
-            count += 1;
-
-            // If all directories aren't read, read the next directory
-            if (count < self.partialsDir.length) {
-                readNext();
-            } else {
-                self.isPartialCachingComplete = true;
-            }
-        });
-};
-
 module.exports = function (grunt) {
 
     grunt.registerMultiTask('register_partials', 'look for partials in a specified folder and generate a nodejs module which registers the partials to Handlebars', function () {
@@ -75,12 +40,14 @@ module.exports = function (grunt) {
 
                     if (partialDir === "undefined") {
                         partialDir = path.dirname(filepath);
-                        partialDir = partialDir === '.' ? '' : partialDir + '/';
+                    } else {
+                        partialDir = path.dirname(path.relative("test/", filepath));
                     }
+                    partialDir = partialDir === '.' ? '' : partialDir + '/';
 
                     var partialName = partialDir + path.basename(filepath, options.extension);
 
-                    return '\n        Handlebars.registerPartial("' + partialName + '", require("./' + partialDir + path.basename(filepath) + '"));';
+                    return '\n        Handlebars.registerPartial("' + partialName + '", require("./' + filepath + '"));';
                 }).join("");
 
 

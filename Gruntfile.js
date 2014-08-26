@@ -41,7 +41,7 @@ module.exports = function(grunt) {
       custom_options: {
         options: {
             extension: '.hbs',
-            rootPartialsDir: './koray/'
+            rootPartialsDir: 'test/'
         },
         files: {
           'tmp/partials_custom.js': ['test/fixtures/navbar.hbs', 'test/fixtures/footer.hbs'],

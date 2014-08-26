@@ -1,7 +1,7 @@
 module.exports = function (Handlebars) {
     function setup() {
-        Handlebars.registerPartial('navbar', require("./koray/navbar.hbs"));
-        Handlebars.registerPartial('footer', require("./koray/header.hbs"));
+        Handlebars.registerPartial("fixtures/navbar", require("./test/fixtures/navbar.hbs"));
+        Handlebars.registerPartial("fixtures/footer", require("./test/fixtures/footer.hbs"));
     }
 
     return {
