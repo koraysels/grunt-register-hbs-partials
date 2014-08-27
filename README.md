@@ -37,20 +37,21 @@ grunt.initConfig({
 });
 ```
 
-## it will generate somehting like this
+## it will generate something like this
 
-```
-    module.exports = function (Handlebars) {
-        function setup() {
-            Handlebars.registerPartial("test/partials/footer", require("./test/partials/footer.hbs"));
-            Handlebars.registerPartial("test/partials/navbar", require("./test/partials/navbar.hbs"));
-        }
-    
-        return {
-            setup: setup
-        };
+```js
+module.exports = function (Handlebars) {
+    function setup() {
+        Handlebars.registerPartial("test/partials/footer", require("./test/partials/footer.hbs"));
+        Handlebars.registerPartial("test/partials/navbar", require("./test/partials/navbar.hbs"));
+    }
+
+    return {
+        setup: setup
     };
+};
 ```
+
 so you can use ``` {{> test/partials/footer }} ``` in your templates
 
 ### Options
@@ -108,7 +109,7 @@ grunt.initConfig({
 ```
 
 
-you can also set the `` requireRoot `` proerty to force the outputted require statement to start at another directory
+you can also set the `` requireRoot `` property to force the outputted require statement to start at another directory
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
