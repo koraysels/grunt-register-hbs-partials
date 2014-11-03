@@ -8,6 +8,7 @@
 'use strict';
 var fs = require('fs');
 var path = require('path');
+var slash = require('slash');
 module.exports = function (grunt) {
 
     grunt.registerMultiTask('register_partials', 'look for partials in a specified folder and generate a nodejs module which registers the partials to Handlebars', function () {
@@ -56,7 +57,7 @@ module.exports = function (grunt) {
 
                     var partialName = partialDir + path.basename(filepath, options.extension);
 
-                    return '\n        Handlebars.registerPartial("' + partialName + '", require("./' + filepath + '"));';
+                    return '\n        Handlebars.registerPartial("' + partialName + '", require("./' + slash(filepath) + '"));';
                 }).join("");
 
 

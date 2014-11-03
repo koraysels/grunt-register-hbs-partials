@@ -1,7 +1,7 @@
 {
   "name": "grunt-register-hbs-partials",
   "description": "look for partials in a specified folder and generate a nodejs module which registers the partials to Handlebars",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/koray.sels/grunt-register-hbs-partials",
   "author": {
     "name": "koray.sels",
@@ -39,5 +39,6 @@
     "gruntplugin"
   ],
   "dependencies": {
+    "slash": "^1.0.0"
   }
 }
